@@ -67,26 +67,29 @@
 }
 
 :root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.129 0.042 264.695);
+  --radius: 0.25rem;
+  --brand: oklch(0.64 0.207 34.5);
+  --brand-soft: oklch(0.975 0.014 40);
+  --surface: oklch(0.995 0.002 90);
+  --background: oklch(0.988 0.002 90);
+  --foreground: oklch(0.19 0.004 60);
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.129 0.042 264.695);
+  --card-foreground: oklch(0.19 0.004 60);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.129 0.042 264.695);
-  --primary: oklch(0.208 0.042 265.755);
-  --primary-foreground: oklch(0.984 0.003 247.858);
-  --secondary: oklch(0.968 0.007 247.896);
-  --secondary-foreground: oklch(0.208 0.042 265.755);
-  --muted: oklch(0.968 0.007 247.896);
-  --muted-foreground: oklch(0.554 0.046 257.417);
-  --accent: oklch(0.968 0.007 247.896);
-  --accent-foreground: oklch(0.208 0.042 265.755);
-  --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(0.929 0.013 255.508);
-  --input: oklch(0.929 0.013 255.508);
-  --ring: oklch(0.704 0.04 256.788);
+  --popover-foreground: oklch(0.19 0.004 60);
+  --primary: oklch(0.19 0.004 60);
+  --primary-foreground: oklch(0.99 0.002 90);
+  --secondary: oklch(0.96 0.003 80);
+  --secondary-foreground: oklch(0.19 0.004 60);
+  --muted: oklch(0.96 0.003 80);
+  --muted-foreground: oklch(0.53 0.008 70);
+  --accent: oklch(0.96 0.003 80);
+  --accent-foreground: oklch(0.19 0.004 60);
+  --destructive: oklch(0.55 0.21 27);
+  --destructive-foreground: oklch(0.99 0.002 90);
+  --border: oklch(0.9 0.004 80);
+  --input: oklch(0.9 0.004 80);
+  --ring: oklch(0.64 0.207 34.5);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
@@ -103,6 +106,9 @@
 }
 
 .dark {
+  --brand: oklch(0.7 0.19 34.5);
+  --brand-soft: oklch(0.28 0.04 34.5);
+  --surface: oklch(0.2 0.01 60);
   --background: oklch(0.129 0.042 264.695);
   --foreground: oklch(0.984 0.003 247.858);
   --card: oklch(0.208 0.042 265.755);
@@ -143,7 +149,131 @@
   }
 
   body {
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
     background-color: var(--color-background);
     color: var(--color-foreground);
+  }
+}
+
+/* --- Meeting Analysis AI: component utilities --- */
+
+@utility btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background-color: var(--color-brand);
+  color: oklch(0.99 0.002 90);
+  padding: 0.75rem 1.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  border: 1px solid var(--color-brand);
+  transition:
+    background-color 0.15s ease,
+    opacity 0.15s ease;
+
+  &:hover:not(:disabled) {
+    background-color: oklch(0.58 0.2 34.5);
+    border-color: oklch(0.58 0.2 34.5);
+  }
+  &:disabled {
+    background-color: transparent;
+    color: var(--color-muted-foreground);
+    border-color: var(--color-border);
+    cursor: not-allowed;
+  }
+  &:focus-visible {
+    outline: 2px solid var(--color-brand);
+    outline-offset: 3px;
+  }
+}
+
+@utility btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-brand);
+  border: 1px solid var(--color-brand);
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease;
+
+  &:hover {
+    background-color: var(--color-brand);
+    color: oklch(0.99 0.002 90);
+  }
+  &:focus-visible {
+    outline: 2px solid var(--color-brand);
+    outline-offset: 3px;
+  }
+}
+
+@utility btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 0.75rem;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  border: 1px solid var(--color-border);
+  color: var(--color-foreground);
+  transition:
+    border-color 0.15s ease,
+    color 0.15s ease;
+
+  &:hover {
+    border-color: var(--color-foreground);
+  }
+  &:focus-visible {
+    outline: 2px solid var(--color-brand);
+    outline-offset: 2px;
+  }
+}
+
+@utility wave-bar {
+  transform-origin: bottom;
+  animation: wave-scale 2.6s ease-in-out infinite alternate;
+}
+
+@utility pulse-dot {
+  animation: soft-pulse 1.4s ease-in-out infinite;
+}
+
+@keyframes wave-scale {
+  from {
+    transform: scaleY(0.35);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+
+@keyframes soft-pulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.45;
+    transform: scale(0.75);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wave-bar,
+  .pulse-dot {
+    animation: none;
   }
 }

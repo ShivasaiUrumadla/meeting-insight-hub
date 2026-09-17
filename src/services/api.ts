@@ -61,7 +61,11 @@ export async function requestUploadUrl(file: File): Promise<UploadUrlResponse> {
   try {
     res = await fetch(`${API_URL}/upload-url`, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        // Free-tier ngrok serves an interstitial page to browsers unless this is set.
+        "ngrok-skip-browser-warning": "true",
+      },
       body: JSON.stringify({
         filename: file.name,
         content_type: file.type || "video/mp4",
@@ -114,6 +118,7 @@ export async function processMeeting(objectKey: string): Promise<ProcessResponse
   try {
     res = await fetch(`${API_URL}/process?object_key=${encodeURIComponent(objectKey)}`, {
       method: "POST",
+      headers: { "ngrok-skip-browser-warning": "true" },
     });
   } catch {
     throw new ApiError("network", "Could not reach the analysis service.");

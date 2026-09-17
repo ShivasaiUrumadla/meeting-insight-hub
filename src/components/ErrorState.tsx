@@ -3,7 +3,7 @@ import type { ApiErrorKind } from "@/services/api";
 
 interface ErrorStateProps {
   kind: ApiErrorKind;
-  detail?: string;
+  detail?: string | undefined;
   onRetry: () => void;
 }
 

@@ -38,7 +38,7 @@ function Home() {
   const [uploadProgress, setUploadProgress] = useState(0);
   const [transcript, setTranscript] = useState("");
   const [report, setReport] = useState("");
-  const [error, setError] = useState<{ kind: ApiErrorKind; detail?: string } | null>(null);
+  const [error, setError] = useState<{ kind: ApiErrorKind; detail?: string | undefined } | null>(null);
   const [meta, setMeta] = useState<{ name: string; size: number } | null>(null);
 
   const workRef = useRef<HTMLDivElement>(null);

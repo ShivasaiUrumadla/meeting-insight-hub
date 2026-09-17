@@ -8,7 +8,7 @@ interface ReportViewProps {
   report: string;
   transcript: string;
   fileName: string;
-  fileSize?: number;
+  fileSize?: number | undefined;
   onNewMeeting: () => void;
 }
 

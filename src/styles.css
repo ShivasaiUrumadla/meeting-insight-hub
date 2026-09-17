@@ -150,3 +150,125 @@
     color: var(--color-foreground);
   }
 }
+
+/* --- Meeting Analysis AI: component utilities --- */
+
+@utility btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background-color: var(--color-brand);
+  color: oklch(0.99 0.002 90);
+  padding: 0.75rem 1.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  border: 1px solid var(--color-brand);
+  transition:
+    background-color 0.15s ease,
+    opacity 0.15s ease;
+
+  &:hover:not(:disabled) {
+    background-color: oklch(0.58 0.2 34.5);
+    border-color: oklch(0.58 0.2 34.5);
+  }
+  &:disabled {
+    background-color: transparent;
+    color: var(--color-muted-foreground);
+    border-color: var(--color-border);
+    cursor: not-allowed;
+  }
+  &:focus-visible {
+    outline: 2px solid var(--color-brand);
+    outline-offset: 3px;
+  }
+}
+
+@utility btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-brand);
+  border: 1px solid var(--color-brand);
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease;
+
+  &:hover {
+    background-color: var(--color-brand);
+    color: oklch(0.99 0.002 90);
+  }
+  &:focus-visible {
+    outline: 2px solid var(--color-brand);
+    outline-offset: 3px;
+  }
+}
+
+@utility btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 0.75rem;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  border: 1px solid var(--color-border);
+  color: var(--color-foreground);
+  transition:
+    border-color 0.15s ease,
+    color 0.15s ease;
+
+  &:hover {
+    border-color: var(--color-foreground);
+  }
+  &:focus-visible {
+    outline: 2px solid var(--color-brand);
+    outline-offset: 2px;
+  }
+}
+
+@utility wave-bar {
+  transform-origin: bottom;
+  animation: wave-scale 2.6s ease-in-out infinite alternate;
+}
+
+@utility pulse-dot {
+  animation: soft-pulse 1.4s ease-in-out infinite;
+}
+
+@keyframes wave-scale {
+  from {
+    transform: scaleY(0.35);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+
+@keyframes soft-pulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.45;
+    transform: scale(0.75);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wave-bar,
+  .pulse-dot {
+    animation: none;
+  }
+}

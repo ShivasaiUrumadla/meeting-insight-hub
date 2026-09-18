@@ -81,7 +81,7 @@ export async function requestUploadUrl(file: File): Promise<UploadUrlResponse> {
   return (await res.json()) as UploadUrlResponse;
 }
 
-/** Step 2 — PUT the file straight to Backblaze B2 with real progress. */
+/** Step 2 — PUT the file straight to B2 with real progress. */
 export function uploadToStorage(
   uploadUrl: string,
   file: File,
